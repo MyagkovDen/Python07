@@ -9,32 +9,30 @@
 # Вывод:
 # Парам пам-пам
 
-verse = 'пара-ра-рам рам-пам-папам па-ра-па-да'
-phrases = list(map(lambda x: x.upper(), verse.split()))
-print(phrases)
-
-vowel = 'АЕЁИОУЫЭЮЯ'
-syllables = []
-count = 0
-for j in phrases:
-    for i in vowel:
-        for k in j:
-            if i == k:
-                count += 1
-    syllables.append((count))
+def count_vowel_in_str(col):
+    vowel = 'АЕЁИОУЫЭЮЯ'
+    syllables = []
     count = 0
-print(syllables)
+    for j in col:
+        for i in vowel:
+            for k in j:
+                if i == k:
+                    count += 1
+        syllables.append((count))
+        count = 0
+    return syllables
 
-def count_syl(col):
+def compare_syl(col):
     for i in range(len(col)):
         if col[i] != col[i-1]:
             return False
     return True
 
-if count_syl(syllables):
-    print('Парам пам-пам')
-else:
-    print('Пам парам')
+verse = 'пара-ра-рам рам-пам-папам па-ра-па-да'
+phrases = list(map(lambda x: x.upper(), verse.split()))
+syl = count_vowel_in_str(phrases)
+if compare_syl(syl): print('Парам пам-пам')
+else: print('Пам парам')
 
 
 
